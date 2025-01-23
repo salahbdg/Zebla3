@@ -1,0 +1,20 @@
+function list:
+read
+%
+	nop;
+%
+write Out
+
+function Oui:
+read
+%
+	nop;
+%
+write Out
+
+function main:
+read
+%
+	nop;
+%
+write Out

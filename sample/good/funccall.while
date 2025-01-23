@@ -1,0 +1,27 @@
+function returnSecond : 
+read Op1, Op2 
+% 
+  Result := Op2 
+% 
+write Result 
+
+function true :
+  read
+  %
+    Result := (cons nil nil)
+  %
+write Result
+
+function false :
+  read
+  %
+    Result := nil
+  %
+write Result
+
+function main:
+  read
+  %
+    Result := (cons bool (returnSecond (true) (false)))
+  %
+write Result

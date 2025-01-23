@@ -1,0 +1,39 @@
+function add1 : 
+read Op1
+% 
+  Result := Op1 ;
+  Result := ( cons nil Result )  
+% 
+write Result 
+ 
+function sub1 : 
+read Op1
+% 
+  Result := Op1 ;
+  Result := (tl Result) 
+% 
+write Result 
+
+function test : 
+read A
+%
+  Result := (tl A)
+% 
+write Result 
+
+function main:
+read
+%
+  Zero := nil ;
+  Result := (add1 Zero);
+  Result := (sub1 Result);
+  Result := (add1 Result);
+  Result := (add1 Result);
+  Result := (add1 Result);
+  Result := (add1 Result);
+  Result := (sub1 Result);
+  Result := (sub1 Result);
+  Result := (cons int Result)
+%
+write Result
+

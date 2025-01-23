@@ -1,0 +1,8 @@
+function main:
+read
+%
+    A := (list);
+    B := (list un);
+    C := (list un deu tri)
+%
+write A, B, C

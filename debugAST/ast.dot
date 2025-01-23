@@ -1,0 +1,132 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label="ROOT"];
+  n1 [label="FUNCTION"];
+  n1 [label="FUNCTION"];
+  n2 [label="main"];
+  n2 [label="main"];
+  n3 [label="FUNCDEF"];
+  n3 [label="FUNCDEF"];
+  n4 [label="COMMANDS"];
+  n4 [label="COMMANDS"];
+  n5 [label="ASSIGN"];
+  n5 [label="ASSIGN"];
+  n6 [label="VARS"];
+  n6 [label="VARS"];
+  n7 [label="A"];
+  n8 [label="EXPRESSIONS"];
+  n8 [label="EXPRESSIONS"];
+  n9 [label="EXPRESSION"];
+  n9 [label="EXPRESSION"];
+  n10 [label="CONS"];
+  n11 [label="ASSIGN"];
+  n11 [label="ASSIGN"];
+  n12 [label="VARS"];
+  n12 [label="VARS"];
+  n13 [label="B"];
+  n14 [label="EXPRESSIONS"];
+  n14 [label="EXPRESSIONS"];
+  n15 [label="EXPRESSION"];
+  n15 [label="EXPRESSION"];
+  n16 [label="CONS"];
+  n16 [label="CONS"];
+  n17 [label="SYMBOL"];
+  n17 [label="SYMBOL"];
+  n18 [label="un"];
+  n19 [label="ASSIGN"];
+  n19 [label="ASSIGN"];
+  n20 [label="VARS"];
+  n20 [label="VARS"];
+  n21 [label="C"];
+  n22 [label="EXPRESSIONS"];
+  n22 [label="EXPRESSIONS"];
+  n23 [label="EXPRESSION"];
+  n23 [label="EXPRESSION"];
+  n24 [label="CONS"];
+  n24 [label="CONS"];
+  n25 [label="SYMBOL"];
+  n25 [label="SYMBOL"];
+  n26 [label="un"];
+  n27 [label="SYMBOL"];
+  n27 [label="SYMBOL"];
+  n28 [label="deu"];
+  n29 [label="ASSIGN"];
+  n29 [label="ASSIGN"];
+  n30 [label="VARS"];
+  n30 [label="VARS"];
+  n31 [label="D"];
+  n32 [label="EXPRESSIONS"];
+  n32 [label="EXPRESSIONS"];
+  n33 [label="EXPRESSION"];
+  n33 [label="EXPRESSION"];
+  n34 [label="CONS"];
+  n34 [label="CONS"];
+  n35 [label="SYMBOL"];
+  n35 [label="SYMBOL"];
+  n36 [label="un"];
+  n37 [label="SYMBOL"];
+  n37 [label="SYMBOL"];
+  n38 [label="deu"];
+  n39 [label="SYMBOL"];
+  n39 [label="SYMBOL"];
+  n40 [label="trei"];
+  n41 [label="OUTPUT"];
+  n41 [label="OUTPUT"];
+  n42 [label="A"];
+  n43 [label="B"];
+  n44 [label="C"];
+  n45 [label="D"];
+
+  n0 -> n1 // "ROOT" -> "FUNCTION"
+  n1 -> n2 // "FUNCTION" -> "main"
+  n2 -> n3 // "main" -> "FUNCDEF"
+  n3 -> n4 // "FUNCDEF" -> "COMMANDS"
+  n4 -> n5 // "COMMANDS" -> "ASSIGN"
+  n5 -> n6 // "ASSIGN" -> "VARS"
+  n6 -> n7 // "VARS" -> "A"
+  n5 -> n8 // "ASSIGN" -> "EXPRESSIONS"
+  n8 -> n9 // "EXPRESSIONS" -> "EXPRESSION"
+  n9 -> n10 // "EXPRESSION" -> "CONS"
+  n4 -> n11 // "COMMANDS" -> "ASSIGN"
+  n11 -> n12 // "ASSIGN" -> "VARS"
+  n12 -> n13 // "VARS" -> "B"
+  n11 -> n14 // "ASSIGN" -> "EXPRESSIONS"
+  n14 -> n15 // "EXPRESSIONS" -> "EXPRESSION"
+  n15 -> n16 // "EXPRESSION" -> "CONS"
+  n16 -> n17 // "CONS" -> "SYMBOL"
+  n17 -> n18 // "SYMBOL" -> "un"
+  n4 -> n19 // "COMMANDS" -> "ASSIGN"
+  n19 -> n20 // "ASSIGN" -> "VARS"
+  n20 -> n21 // "VARS" -> "C"
+  n19 -> n22 // "ASSIGN" -> "EXPRESSIONS"
+  n22 -> n23 // "EXPRESSIONS" -> "EXPRESSION"
+  n23 -> n24 // "EXPRESSION" -> "CONS"
+  n24 -> n25 // "CONS" -> "SYMBOL"
+  n25 -> n26 // "SYMBOL" -> "un"
+  n24 -> n27 // "CONS" -> "SYMBOL"
+  n27 -> n28 // "SYMBOL" -> "deu"
+  n4 -> n29 // "COMMANDS" -> "ASSIGN"
+  n29 -> n30 // "ASSIGN" -> "VARS"
+  n30 -> n31 // "VARS" -> "D"
+  n29 -> n32 // "ASSIGN" -> "EXPRESSIONS"
+  n32 -> n33 // "EXPRESSIONS" -> "EXPRESSION"
+  n33 -> n34 // "EXPRESSION" -> "CONS"
+  n34 -> n35 // "CONS" -> "SYMBOL"
+  n35 -> n36 // "SYMBOL" -> "un"
+  n34 -> n37 // "CONS" -> "SYMBOL"
+  n37 -> n38 // "SYMBOL" -> "deu"
+  n34 -> n39 // "CONS" -> "SYMBOL"
+  n39 -> n40 // "SYMBOL" -> "trei"
+  n3 -> n41 // "FUNCDEF" -> "OUTPUT"
+  n41 -> n42 // "OUTPUT" -> "A"
+  n41 -> n43 // "OUTPUT" -> "B"
+  n41 -> n44 // "OUTPUT" -> "C"
+  n41 -> n45 // "OUTPUT" -> "D"
+
+}

@@ -1,0 +1,16 @@
+function nopfunc: 
+read
+%
+	nop;
+	A := (cons nil nil);
+%
+write A
+
+function main:
+read
+%
+	nop;
+	A:= (cons int (nopfunc));
+	nop;
+%
+write A

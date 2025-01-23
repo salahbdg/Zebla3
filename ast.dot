@@ -1,0 +1,259 @@
+digraph {
+
+	ordering=out;
+	ranksep=.4;
+	bgcolor="lightgrey"; node [shape=box, fixedsize=false, fontsize=12, fontname="Helvetica-bold", fontcolor="blue"
+		width=.25, height=.25, color="black", fillcolor="white", style="filled, solid, bold"];
+	edge [arrowsize=.5, color="black", style="bold"]
+
+  n0 [label="ROOT"];
+  n1 [label="FUNCTION"];
+  n1 [label="FUNCTION"];
+  n2 [label="true"];
+  n2 [label="true"];
+  n3 [label="FUNCDEF"];
+  n3 [label="FUNCDEF"];
+  n4 [label="COMMANDS"];
+  n4 [label="COMMANDS"];
+  n5 [label="ASSIGN"];
+  n5 [label="ASSIGN"];
+  n6 [label="VARS"];
+  n6 [label="VARS"];
+  n7 [label="Out"];
+  n8 [label="EXPRESSIONS"];
+  n8 [label="EXPRESSIONS"];
+  n9 [label="EXPRESSION"];
+  n9 [label="EXPRESSION"];
+  n10 [label="CONS"];
+  n10 [label="CONS"];
+  n11 [label="NIL"];
+  n12 [label="NIL"];
+  n13 [label="OUTPUT"];
+  n13 [label="OUTPUT"];
+  n14 [label="Out"];
+  n15 [label="FUNCTION"];
+  n15 [label="FUNCTION"];
+  n16 [label="false"];
+  n16 [label="false"];
+  n17 [label="FUNCDEF"];
+  n17 [label="FUNCDEF"];
+  n18 [label="COMMANDS"];
+  n18 [label="COMMANDS"];
+  n19 [label="ASSIGN"];
+  n19 [label="ASSIGN"];
+  n20 [label="VARS"];
+  n20 [label="VARS"];
+  n21 [label="Out"];
+  n22 [label="EXPRESSIONS"];
+  n22 [label="EXPRESSIONS"];
+  n23 [label="EXPRESSION"];
+  n23 [label="EXPRESSION"];
+  n24 [label="NIL"];
+  n25 [label="OUTPUT"];
+  n25 [label="OUTPUT"];
+  n26 [label="Out"];
+  n27 [label="FUNCTION"];
+  n27 [label="FUNCTION"];
+  n28 [label="test"];
+  n28 [label="test"];
+  n29 [label="FUNCDEF"];
+  n29 [label="FUNCDEF"];
+  n30 [label="COMMANDS"];
+  n30 [label="COMMANDS"];
+  n31 [label="IF"];
+  n31 [label="IF"];
+  n32 [label="EXPRESSION"];
+  n32 [label="EXPRESSION"];
+  n33 [label="FUNCTIONCALL"];
+  n33 [label="FUNCTIONCALL"];
+  n34 [label="true"];
+  n35 [label="COMMANDS"];
+  n35 [label="COMMANDS"];
+  n36 [label="IF"];
+  n36 [label="IF"];
+  n37 [label="EXPRESSION"];
+  n37 [label="EXPRESSION"];
+  n38 [label="FUNCTIONCALL"];
+  n38 [label="FUNCTIONCALL"];
+  n39 [label="false"];
+  n40 [label="COMMANDS"];
+  n40 [label="COMMANDS"];
+  n41 [label="ASSIGN"];
+  n41 [label="ASSIGN"];
+  n42 [label="VARS"];
+  n42 [label="VARS"];
+  n43 [label="Out"];
+  n44 [label="EXPRESSIONS"];
+  n44 [label="EXPRESSIONS"];
+  n45 [label="EXPRESSION"];
+  n45 [label="EXPRESSION"];
+  n46 [label="CONS"];
+  n46 [label="CONS"];
+  n47 [label="SYMBOL"];
+  n47 [label="SYMBOL"];
+  n48 [label="not"];
+  n49 [label="SYMBOL"];
+  n49 [label="SYMBOL"];
+  n50 [label="right"];
+  n51 [label="ELSECOMMANDS"];
+  n51 [label="ELSECOMMANDS"];
+  n52 [label="ASSIGN"];
+  n52 [label="ASSIGN"];
+  n53 [label="VARS"];
+  n53 [label="VARS"];
+  n54 [label="Out"];
+  n55 [label="EXPRESSIONS"];
+  n55 [label="EXPRESSIONS"];
+  n56 [label="EXPRESSION"];
+  n56 [label="EXPRESSION"];
+  n57 [label="CONS"];
+  n57 [label="CONS"];
+  n58 [label="SYMBOL"];
+  n58 [label="SYMBOL"];
+  n59 [label="yes"];
+  n60 [label="SYMBOL"];
+  n60 [label="SYMBOL"];
+  n61 [label="good"];
+  n62 [label="ELSECOMMANDS"];
+  n62 [label="ELSECOMMANDS"];
+  n63 [label="ASSIGN"];
+  n63 [label="ASSIGN"];
+  n64 [label="VARS"];
+  n64 [label="VARS"];
+  n65 [label="Out"];
+  n66 [label="EXPRESSIONS"];
+  n66 [label="EXPRESSIONS"];
+  n67 [label="EXPRESSION"];
+  n67 [label="EXPRESSION"];
+  n68 [label="CONS"];
+  n68 [label="CONS"];
+  n69 [label="SYMBOL"];
+  n69 [label="SYMBOL"];
+  n70 [label="not"];
+  n71 [label="SYMBOL"];
+  n71 [label="SYMBOL"];
+  n72 [label="right"];
+  n73 [label="OUTPUT"];
+  n73 [label="OUTPUT"];
+  n74 [label="Out"];
+  n75 [label="FUNCTION"];
+  n75 [label="FUNCTION"];
+  n76 [label="main"];
+  n76 [label="main"];
+  n77 [label="FUNCDEF"];
+  n77 [label="FUNCDEF"];
+  n78 [label="COMMANDS"];
+  n78 [label="COMMANDS"];
+  n79 [label="ASSIGN"];
+  n79 [label="ASSIGN"];
+  n80 [label="VARS"];
+  n80 [label="VARS"];
+  n81 [label="Out"];
+  n82 [label="EXPRESSIONS"];
+  n82 [label="EXPRESSIONS"];
+  n83 [label="EXPRESSION"];
+  n83 [label="EXPRESSION"];
+  n84 [label="CONS"];
+  n84 [label="CONS"];
+  n85 [label="SYMBOL"];
+  n85 [label="SYMBOL"];
+  n86 [label="string"];
+  n87 [label="FUNCTIONCALL"];
+  n87 [label="FUNCTIONCALL"];
+  n88 [label="test"];
+  n89 [label="OUTPUT"];
+  n89 [label="OUTPUT"];
+  n90 [label="Out"];
+
+  n0 -> n1 // "ROOT" -> "FUNCTION"
+  n1 -> n2 // "FUNCTION" -> "true"
+  n2 -> n3 // "true" -> "FUNCDEF"
+  n3 -> n4 // "FUNCDEF" -> "COMMANDS"
+  n4 -> n5 // "COMMANDS" -> "ASSIGN"
+  n5 -> n6 // "ASSIGN" -> "VARS"
+  n6 -> n7 // "VARS" -> "Out"
+  n5 -> n8 // "ASSIGN" -> "EXPRESSIONS"
+  n8 -> n9 // "EXPRESSIONS" -> "EXPRESSION"
+  n9 -> n10 // "EXPRESSION" -> "CONS"
+  n10 -> n11 // "CONS" -> "NIL"
+  n10 -> n12 // "CONS" -> "NIL"
+  n3 -> n13 // "FUNCDEF" -> "OUTPUT"
+  n13 -> n14 // "OUTPUT" -> "Out"
+  n0 -> n15 // "ROOT" -> "FUNCTION"
+  n15 -> n16 // "FUNCTION" -> "false"
+  n16 -> n17 // "false" -> "FUNCDEF"
+  n17 -> n18 // "FUNCDEF" -> "COMMANDS"
+  n18 -> n19 // "COMMANDS" -> "ASSIGN"
+  n19 -> n20 // "ASSIGN" -> "VARS"
+  n20 -> n21 // "VARS" -> "Out"
+  n19 -> n22 // "ASSIGN" -> "EXPRESSIONS"
+  n22 -> n23 // "EXPRESSIONS" -> "EXPRESSION"
+  n23 -> n24 // "EXPRESSION" -> "NIL"
+  n17 -> n25 // "FUNCDEF" -> "OUTPUT"
+  n25 -> n26 // "OUTPUT" -> "Out"
+  n0 -> n27 // "ROOT" -> "FUNCTION"
+  n27 -> n28 // "FUNCTION" -> "test"
+  n28 -> n29 // "test" -> "FUNCDEF"
+  n29 -> n30 // "FUNCDEF" -> "COMMANDS"
+  n30 -> n31 // "COMMANDS" -> "IF"
+  n31 -> n32 // "IF" -> "EXPRESSION"
+  n32 -> n33 // "EXPRESSION" -> "FUNCTIONCALL"
+  n33 -> n34 // "FUNCTIONCALL" -> "true"
+  n31 -> n35 // "IF" -> "COMMANDS"
+  n35 -> n36 // "COMMANDS" -> "IF"
+  n36 -> n37 // "IF" -> "EXPRESSION"
+  n37 -> n38 // "EXPRESSION" -> "FUNCTIONCALL"
+  n38 -> n39 // "FUNCTIONCALL" -> "false"
+  n36 -> n40 // "IF" -> "COMMANDS"
+  n40 -> n41 // "COMMANDS" -> "ASSIGN"
+  n41 -> n42 // "ASSIGN" -> "VARS"
+  n42 -> n43 // "VARS" -> "Out"
+  n41 -> n44 // "ASSIGN" -> "EXPRESSIONS"
+  n44 -> n45 // "EXPRESSIONS" -> "EXPRESSION"
+  n45 -> n46 // "EXPRESSION" -> "CONS"
+  n46 -> n47 // "CONS" -> "SYMBOL"
+  n47 -> n48 // "SYMBOL" -> "not"
+  n46 -> n49 // "CONS" -> "SYMBOL"
+  n49 -> n50 // "SYMBOL" -> "right"
+  n36 -> n51 // "IF" -> "ELSECOMMANDS"
+  n51 -> n52 // "ELSECOMMANDS" -> "ASSIGN"
+  n52 -> n53 // "ASSIGN" -> "VARS"
+  n53 -> n54 // "VARS" -> "Out"
+  n52 -> n55 // "ASSIGN" -> "EXPRESSIONS"
+  n55 -> n56 // "EXPRESSIONS" -> "EXPRESSION"
+  n56 -> n57 // "EXPRESSION" -> "CONS"
+  n57 -> n58 // "CONS" -> "SYMBOL"
+  n58 -> n59 // "SYMBOL" -> "yes"
+  n57 -> n60 // "CONS" -> "SYMBOL"
+  n60 -> n61 // "SYMBOL" -> "good"
+  n31 -> n62 // "IF" -> "ELSECOMMANDS"
+  n62 -> n63 // "ELSECOMMANDS" -> "ASSIGN"
+  n63 -> n64 // "ASSIGN" -> "VARS"
+  n64 -> n65 // "VARS" -> "Out"
+  n63 -> n66 // "ASSIGN" -> "EXPRESSIONS"
+  n66 -> n67 // "EXPRESSIONS" -> "EXPRESSION"
+  n67 -> n68 // "EXPRESSION" -> "CONS"
+  n68 -> n69 // "CONS" -> "SYMBOL"
+  n69 -> n70 // "SYMBOL" -> "not"
+  n68 -> n71 // "CONS" -> "SYMBOL"
+  n71 -> n72 // "SYMBOL" -> "right"
+  n29 -> n73 // "FUNCDEF" -> "OUTPUT"
+  n73 -> n74 // "OUTPUT" -> "Out"
+  n0 -> n75 // "ROOT" -> "FUNCTION"
+  n75 -> n76 // "FUNCTION" -> "main"
+  n76 -> n77 // "main" -> "FUNCDEF"
+  n77 -> n78 // "FUNCDEF" -> "COMMANDS"
+  n78 -> n79 // "COMMANDS" -> "ASSIGN"
+  n79 -> n80 // "ASSIGN" -> "VARS"
+  n80 -> n81 // "VARS" -> "Out"
+  n79 -> n82 // "ASSIGN" -> "EXPRESSIONS"
+  n82 -> n83 // "EXPRESSIONS" -> "EXPRESSION"
+  n83 -> n84 // "EXPRESSION" -> "CONS"
+  n84 -> n85 // "CONS" -> "SYMBOL"
+  n85 -> n86 // "SYMBOL" -> "string"
+  n84 -> n87 // "CONS" -> "FUNCTIONCALL"
+  n87 -> n88 // "FUNCTIONCALL" -> "test"
+  n77 -> n89 // "FUNCDEF" -> "OUTPUT"
+  n89 -> n90 // "OUTPUT" -> "Out"
+
+}
