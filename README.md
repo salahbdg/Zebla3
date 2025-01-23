@@ -25,7 +25,7 @@
 
 to generate the jar
 
-mvn clean target 
+mvn clean package 
 
 
 to run the jar
