@@ -4,6 +4,6 @@ read
     A := (cons);
     B := (cons un);
     C := (cons un deu);
-    D := (cons un deu trei);
+    D := (cons un (cons deu trei));
 %
 write A, B, C, D

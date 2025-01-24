@@ -101,9 +101,22 @@ public class Main {
         // // Generate 3-address code
         System.out.println("\n\033[1;34m### Python translation ###\033[0m\n");
         PythonTranslator python = new PythonTranslator();
-        String pythoncode = python.translate(threeAddressCode);
+        List<String> pythoncode = python.translate(threeAddressCode);
 
-        System.out.println(pythoncode);
+        for (String line : pythoncode) {
+            System.out.println(line);
+        }
+
+        // Write the Python code to a file named generatepython.py
+        try (FileWriter writer = new FileWriter("generatepython.py")) {
+          for (String line : pythoncode) {
+            writer.write(line + System.lineSeparator());
+          }
+          System.out.println("Python code has been written to generatepython.py");
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        //System.out.println(pythoncode);
         
 
 

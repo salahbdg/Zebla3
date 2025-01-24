@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tlc.AppTest" time="0.037" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tlc.AppTest" time="0.039" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter17400802596710249912.jar /home/saladin/Documents/Zebla3/target/surefire 2025-01-24T20-45-02_762-jvmRun1 surefire1653523382625406267tmp surefire_0670544227487001558tmp"/>
+    <property name="sun.java.command" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter5017939927011626711.jar /home/saladin/Documents/Zebla3/target/surefire 2025-01-24T23-35-30_282-jvmRun1 surefire8985412743246063541tmp surefire_012730509651309109131tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/saladin/Documents/Zebla3/target/test-classes:/home/saladin/Documents/Zebla3/target/classes:/home/saladin/.m2/repository/org/antlr/antlr/3.5.3/antlr-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/ST4/4.3.1/ST4-4.3.1.jar:/home/saladin/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/saladin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/saladin/.m2/repository/org/antlr/stringtemplate/3.2/stringtemplate-3.2.jar:/home/saladin/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter17400802596710249912.jar"/>
+    <property name="surefire.real.class.path" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter5017939927011626711.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+11-Ubuntu-1ubuntu124.04"/>
     <property name="user.name" value="saladin"/>
