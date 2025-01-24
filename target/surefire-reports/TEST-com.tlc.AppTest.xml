@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tlc.AppTest" time="0.1" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tlc.AppTest" time="0.037" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/saladin/Documents/Whilec/target/test-classes:/home/saladin/Documents/Whilec/target/classes:/home/saladin/.m2/repository/org/antlr/antlr/3.5.3/antlr-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/ST4/4.3.1/ST4-4.3.1.jar:/home/saladin/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/saladin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/saladin/.m2/repository/org/antlr/stringtemplate/3.2/stringtemplate-3.2.jar:/home/saladin/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:"/>
+    <property name="java.class.path" value="/home/saladin/Documents/Zebla3/target/test-classes:/home/saladin/Documents/Zebla3/target/classes:/home/saladin/.m2/repository/org/antlr/antlr/3.5.3/antlr-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/ST4/4.3.1/ST4-4.3.1.jar:/home/saladin/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/saladin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/saladin/.m2/repository/org/antlr/stringtemplate/3.2/stringtemplate-3.2.jar:/home/saladin/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -12,9 +12,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/saladin/Documents/Whilec/target/surefire/surefirebooter4794834327214164283.jar /home/saladin/Documents/Whilec/target/surefire 2025-01-23T16-11-22_859-jvmRun1 surefire3652658640742360588tmp surefire_013752607707400144997tmp"/>
+    <property name="sun.java.command" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter17400802596710249912.jar /home/saladin/Documents/Zebla3/target/surefire 2025-01-24T20-45-02_762-jvmRun1 surefire1653523382625406267tmp surefire_0670544227487001558tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/saladin/Documents/Whilec/target/test-classes:/home/saladin/Documents/Whilec/target/classes:/home/saladin/.m2/repository/org/antlr/antlr/3.5.3/antlr-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/ST4/4.3.1/ST4-4.3.1.jar:/home/saladin/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/saladin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/saladin/.m2/repository/org/antlr/stringtemplate/3.2/stringtemplate-3.2.jar:/home/saladin/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:"/>
+    <property name="surefire.test.class.path" value="/home/saladin/Documents/Zebla3/target/test-classes:/home/saladin/Documents/Zebla3/target/classes:/home/saladin/.m2/repository/org/antlr/antlr/3.5.3/antlr-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar:/home/saladin/.m2/repository/org/antlr/ST4/4.3.1/ST4-4.3.1.jar:/home/saladin/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/saladin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/saladin/.m2/repository/org/antlr/stringtemplate/3.2/stringtemplate-3.2.jar:/home/saladin/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/saladin"/>
     <property name="user.language" value="en"/>
@@ -22,12 +22,12 @@
     <property name="java.version.date" value="2024-10-15"/>
     <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/home/saladin/Documents/Whilec"/>
+    <property name="basedir" value="/home/saladin/Documents/Zebla3"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/saladin/Documents/Whilec/target/surefire/surefirebooter4794834327214164283.jar"/>
+    <property name="surefire.real.class.path" value="/home/saladin/Documents/Zebla3/target/surefire/surefirebooter17400802596710249912.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+11-Ubuntu-1ubuntu124.04"/>
     <property name="user.name" value="saladin"/>
@@ -41,7 +41,7 @@
     <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="java.version" value="21.0.5"/>
-    <property name="user.dir" value="/home/saladin/Documents/Whilec"/>
+    <property name="user.dir" value="/home/saladin/Documents/Zebla3"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
@@ -53,5 +53,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.tlc.AppTest" time="0.004"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.tlc.AppTest" time="0.003"/>
 </testsuite>

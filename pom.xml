@@ -110,7 +110,7 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <finalName>whilec</finalName>
+          <finalName>whilecompiler</finalName>
           <appendAssemblyId>false</appendAssemblyId>
         </configuration>
         <executions>

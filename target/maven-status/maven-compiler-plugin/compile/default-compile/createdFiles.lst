@@ -1,3 +1,4 @@
+runner/Main.class
 C3A/AST.class
 AST/ASTParser$input_return.class
 AST/ASTParser$exprs_return.class
@@ -12,6 +13,7 @@ AST/ASTParser$commands_return.class
 AST/ASTParser$inputsub_return.class
 SEMANTIC/ErrorCollector.class
 SEMANTIC/FunctionTable.class
+translate/PythonTranslator.class
 C3A/C3aConverter.class
 AST/ASTParser$expression_return.class
 AST/ASTLexer.class

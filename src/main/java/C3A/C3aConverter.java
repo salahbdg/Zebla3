@@ -142,9 +142,10 @@ public class C3aConverter {
     private String convertNode(CommonTree ast) {
       if (ast == null) return null;
 
-      System.out.println("ast id node : "+ast.getType());
-
       switch (ast.getType()) {
+          case AST.ROOT:
+              convertRoot(ast);
+              break;
           case AST.FUNCTION:
               convertFunction(ast);
               break;
@@ -155,8 +156,13 @@ public class C3aConverter {
               return convertCommand(ast);
           case AST.EXPRESSION:
               return convertExpression(ast);
+          case AST.HEAD:
+              return convertHead(ast);
+          case AST.TAIL:
+              return convertTail(ast);
+          case AST.LIST:
+              return convertList(ast);
           default:
-              // For nodes without specific conversion, try processing children
               if (ast.getChildren() != null) {
                   for (Object child : ast.getChildren()) {
                       convertNode((CommonTree) child);
@@ -164,7 +170,75 @@ public class C3aConverter {
               }
       }
       return null;
+  }
+
+  // Convert head
+  private String convertHead(CommonTree headNode) {
+    String expr = convertExpression((CommonTree) headNode.getChild(0));
+    String temp = newTemp();
+    threeAddressCode.add(temp + " := HEAD(" + expr + ")");
+    return temp;
+  }
+
+  // Convert tail
+  private String convertTail(CommonTree tailNode) {
+    String expr = convertExpression((CommonTree) tailNode.getChild(0));
+    String temp = newTemp();
+    threeAddressCode.add(temp + " := TAIL(" + expr + ")");
+    return temp;
+  }
+
+  // Convert list
+  private String convertList(CommonTree listNode) {
+    String temp = newTemp();
+    threeAddressCode.add(temp + " := nil");
+    
+    for (int i = listNode.getChildCount() - 1; i >= 0; i--) {
+        String elementTemp = convertExpression((CommonTree) listNode.getChild(i));
+        String newTemp = newTemp();
+        threeAddressCode.add(newTemp + " := CONS(" + elementTemp + ", " + temp + ")");
+        temp = newTemp;
     }
+    
+    return temp;
+  }
+
+  // convert forEach
+  private String convertForEach(CommonTree foreachNode) {
+    String iterVar = foreachNode.getChild(0).getText();
+    String collection = convertExpression((CommonTree) foreachNode.getChild(1));
+    CommonTree commands = (CommonTree) foreachNode.getChild(2);
+    
+    String currentTemp = newTemp();
+    String startLabel = newLabel();
+    String endLabel = newLabel();
+    
+    // Initialize current to collection
+    threeAddressCode.add(currentTemp + " := " + collection);
+    
+    // Loop start
+    threeAddressCode.add(startLabel + ":");
+    
+    // Check if current is nil
+    String condTemp = newTemp();
+    threeAddressCode.add(condTemp + " := " + currentTemp + " =? nil");
+    threeAddressCode.add("IF " + condTemp + " GOTO " + endLabel);
+    
+    // Assign head to iterator
+    threeAddressCode.add(iterVar + " := HEAD(" + currentTemp + ")");
+    
+    // Process loop body
+    convertCommands(commands);
+    
+    // Move to next element
+    threeAddressCode.add(currentTemp + " := TAIL(" + currentTemp + ")");
+    threeAddressCode.add("GOTO " + startLabel);
+    
+    // Loop end
+    threeAddressCode.add(endLabel + ":");
+    
+    return null;
+  }
 
 
 
@@ -209,11 +283,11 @@ public class C3aConverter {
                 threeAddressCode.add("NOP");
                 return null;
             case AST.FOR:
-            // return convertFor(baseExpr);
-              return "FOR";
+            return convertFor(cmdNode);
+            //  return "FOR";
 
             case AST.FOREACH:
-              return "FOREACH";
+              return convertForEach(cmdNode);
 
             default:
                 throw new UnsupportedOperationException("Unsupported command type: " + cmdNode.getType());
@@ -222,73 +296,82 @@ public class C3aConverter {
 
     // Convert assignment
     private String convertAssignment(CommonTree assignNode) {
-        CommonTree varsNode = (CommonTree) assignNode.getChild(0);
-        CommonTree exprsNode = (CommonTree) assignNode.getChild(1);
-        
-        List<String> vars = new ArrayList<>();
-        List<String> temps = new ArrayList<>();
-        
-        // Convert variables
-        for (Object varObj : varsNode.getChildren()) {
-            vars.add(varObj.toString());
-        }
-        
-        // Convert expressions
-        for (Object exprObj : exprsNode.getChildren()) {
-            CommonTree exprNode = (CommonTree) exprObj;
-            String temp = convertExpression(exprNode);
-            temps.add(temp);
-        }
-        
-        // Generate assignments
-        for (int i = 0; i < Math.min(vars.size(), temps.size()); i++) {
-            threeAddressCode.add(vars.get(i) + " := " + temps.get(i));
-        }
-        
-        return null;
-    }
+      CommonTree varsNode = (CommonTree) assignNode.getChild(0);
+      CommonTree exprsNode = (CommonTree) assignNode.getChild(1);
+      
+      if (varsNode.getChildCount() != exprsNode.getChildCount()) {
+          warnningCollector.add("Warning: Mismatch in number of variables and expressions");
+          return null;
+      }
+
+      // Process each assignment
+      for (int i = 0; i < varsNode.getChildCount(); i++) {
+          String varName = varsNode.getChild(i).getText();
+          String exprTemp = convertExpression((CommonTree) exprsNode.getChild(i));
+          threeAddressCode.add(varName + " := " + exprTemp);
+      }
+      
+      return null;
+  }
 
     
 
     // Convert expression
     private String convertExpression(CommonTree exprNode) {
-        
-        CommonTree baseExpr = (CommonTree) exprNode.getChild(0);
+      if (exprNode == null) return "nil";
 
-        if (baseExpr == null) {
-            warnningCollector.add("Warning: Empty expression found");
-            return null;
-        }
+      // If it's an EXPRESSION node, get its child
+      CommonTree baseExpr = exprNode.getType() == AST.EXPRESSION ? 
+      (CommonTree) exprNode.getChild(0) : exprNode;
 
-        getChilds(baseExpr);
-        
-        switch (baseExpr.getType()) {
-            case AST.FUNCTIONCALL:
-                return convertFunctionCall(baseExpr);
-            case AST.VARIABLE:
-                System.out.println(baseExpr.getChild(0).getText());
+
+      if (exprNode.getType() == AST.EXPRESSION) {
+          baseExpr = (CommonTree) exprNode.getChild(0);
+      } else {
+          baseExpr = exprNode;
+      }
+
+      switch (baseExpr.getType()) {
+          case AST.FUNCTIONCALL:
+              return convertFunctionCall(baseExpr);
+          
+          case AST.VARIABLE:
+          case AST.VARIABLE_LEX:
+              return baseExpr.getChild(0).getText();
+          
+          case AST.NIL:
+              return "nil";
+          
+          case AST.SYMBOL:
+            // Handle the case where it's a symbol leaf node
+            if (baseExpr.getChild(0) != null) {
                 return baseExpr.getChild(0).getText();
-            case AST.NIL:
-                return "nil";
-            case AST.SYMBOL:
-                return baseExpr.getText();
-            case AST.EXPRESSION:
-                return convertComparisonExpression(baseExpr);
+            }
+            // Handle the case where the symbol is directly in the node
+            return baseExpr.getText();
 
-            case AST.CONS:
-                return convertConsExpression(baseExpr);
-
-            case AST.SYMBOL_LEX:
-                return baseExpr.getText();
-
-            
-              
-              // here 
-              
-           
-            default:
-                throw new UnsupportedOperationException("Unsupported expression type: " + baseExpr.getType());
-        }
+          case AST.SYMBOL_LEX:
+            return baseExpr.getText();
+          
+          case AST.CONS:
+              return convertConsExpression(baseExpr);
+          
+          case AST.HEAD:
+              String headArgTemp = convertExpression((CommonTree) baseExpr.getChild(0));
+              String headResultTemp = newTemp();
+              threeAddressCode.add(headResultTemp + " := HEAD(" + headArgTemp + ")");
+              return headResultTemp;
+          
+          case AST.TAIL:
+              String tailArgTemp = convertExpression((CommonTree) baseExpr.getChild(0));
+              String tailResultTemp = newTemp();
+              threeAddressCode.add(tailResultTemp + " := TAIL(" + tailArgTemp + ")");
+              return tailResultTemp;
+          
+          default:
+              warnningCollector.add("Warning: Unsupported expression type: " + baseExpr.getType());
+              return "nil";
+      }
     }
 
     // convert cons
@@ -297,80 +380,119 @@ public class C3aConverter {
     // Convert CONS expression
     // Convert CONS expression
     private String convertConsExpression(CommonTree consNode) {
-      String temp = newTemp();
-      List<String> args = new ArrayList<>();
-
-      // check if cons has no child
       if (consNode.getChildCount() == 0) {
-          warnningCollector.add("Warning: CONS without arguments found");
-          threeAddressCode.add(temp + " := CONS(nil)");
+          String temp = newTemp();
+          threeAddressCode.add(temp + " := CONS(nil, nil)");
           return temp;
       }
 
-      // Handle arguments if present
-      if (consNode.getChildCount() > 0) {
-          for (Object argObj : consNode.getChildren()) {
-              CommonTree argNode = (CommonTree) argObj;
-              String argTemp = convertExpression(argNode);
-              args.add(argTemp);
-          }
-      }
+      // Get the left and right arguments
+      String leftTemp = null;
+      String rightTemp = null;
 
-      // // check if cons has NIL as argument
-      // if (args.size() == 1 && args.get(0).equals("nil")) {
-      //     return "nil";
-      // }
-
-      // Generate three-address code for CONS with any number of arguments
-      if (args.isEmpty()) {
-          threeAddressCode.add(temp + " := CONS(nil)");
+      // Handle left argument
+      if (consNode.getChild(0) != null) {
+          CommonTree leftNode = (CommonTree) consNode.getChild(0);
+          leftTemp = convertExpression(leftNode);
       } else {
-          String currentTemp = temp;
-          for (int i = 0; i < args.size(); i++) {
-              String arg = args.get(i);
-              if (i == 0) {
-                  threeAddressCode.add(currentTemp + " := CONS(" + arg + ")");
-              } else {
-                  String newTemp = newTemp();
-                  threeAddressCode.add(newTemp + " := CONS(" + currentTemp + ", " + arg + ")");
-                  currentTemp = newTemp;
-              }
-          }
+          leftTemp = "nil";
       }
 
-      return temp;
-    }
+      // Handle right argument
+      if (consNode.getChildCount() > 1 && consNode.getChild(1) != null) {
+          CommonTree rightNode = (CommonTree) consNode.getChild(1);
+          rightTemp = convertExpression(rightNode);
+      } else {
+          rightTemp = "nil";
+      }
 
-// // Convert FOR loop
-// private String convertFor(CommonTree forNode) {
-//     CommonTree varNode = (CommonTree) forNode.getChild(0);
-//     CommonTree rangeNode = (CommonTree) forNode.getChild(1);
-//     CommonTree commandsNode = (CommonTree) forNode.getChild(2);
+      // Create final CONS instruction
+      String resultTemp = newTemp();
+      threeAddressCode.add(resultTemp + " := CONS(" + leftTemp + ", " + rightTemp + ")");
+      return resultTemp;
+  }
+
+    // Convert FOR loop
+    private String convertFor(CommonTree forNode) {
+      // Convert count expression
+      String countTemp = convertExpression((CommonTree) forNode.getChild(0));
+      
+      // Create counter variable
+      String counterTemp = newTemp();
+      String startLabel = newLabel();
+      String endLabel = newLabel();
+      
+      // Initialize counter
+      threeAddressCode.add(counterTemp + " := 0");
+      
+      // Loop start
+      threeAddressCode.add(startLabel + ":");
+      
+      // Condition check
+      String condTemp = newTemp();
+      threeAddressCode.add(condTemp + " := " + counterTemp + " < " + countTemp);
+      threeAddressCode.add("IF NOT " + condTemp + " GOTO " + endLabel);
+      
+      // Loop body
+      convertCommands((CommonTree) forNode.getChild(1));
+      
+      // Increment counter
+      threeAddressCode.add(counterTemp + " := " + counterTemp + " + 1");
+      threeAddressCode.add("GOTO " + startLabel);
+      
+      // Loop end
+      threeAddressCode.add(endLabel + ":");
+      
+      return null;
+  }
+  
 
 
     // Convert function call
-    private String convertFunctionCall(CommonTree funcCallNode) {
-        String funcName = funcCallNode.getChild(0).getText();
-        String temp = newTemp();
-        
-        // Handle arguments if present
-        if (funcCallNode.getChildCount() > 1) {
-            CommonTree argsNode = (CommonTree) funcCallNode.getChild(1);
-            List<String> args = new ArrayList<>();
-            
-            for (Object argObj : argsNode.getChildren()) {
-                CommonTree argNode = (CommonTree) argObj;
-                String argTemp = convertExpression(argNode);
-                args.add(argTemp);
-            }
-            
-            threeAddressCode.add(temp + " := CALL " + funcName + "(" + String.join(", ", args) + ")");
-        } else {
-            threeAddressCode.add(temp + " := CALL " + funcName);
-        }
-        
-        return temp;
+  //   private String convertFunctionCall(CommonTree funcCallNode) {
+  //     String funcName = funcCallNode.getChild(0).getText();
+  //     List<String> argTemps = new ArrayList<>();
+      
+  //     // Convert each argument to its own temporary
+  //     for (int i = 1; i < funcCallNode.getChildCount(); i++) {
+  //         String argTemp = convertExpression((CommonTree) funcCallNode.getChild(i));
+  //         argTemps.add(argTemp);
+  //     }
+      
+  //     // Create the function call
+  //     String resultTemp = newTemp();
+  //     if (argTemps.isEmpty()) {
+  //         threeAddressCode.add(resultTemp + " := CALL " + funcName);
+  //     } else {
+  //         threeAddressCode.add(resultTemp + " := CALL " + funcName + "(" + String.join(", ", argTemps) + ")");
+  //     }
+      
+  //     return resultTemp;
+  // }
+
+  private String convertFunctionCall(CommonTree funcCallNode) {
+    String functionName = funcCallNode.getChild(0).getText();
+    List<String> args = new ArrayList<>();
+    
+    // Get the function name node (which contains the arguments)
+    CommonTree funcNameNode = (CommonTree) funcCallNode.getChild(0);
+    
+    // Process arguments which are children of the function name node
+    for (int i = 0; i < funcNameNode.getChildCount(); i++) {
+        CommonTree argNode = (CommonTree) funcNameNode.getChild(i);
+        String argTemp = convertExpression(argNode);
+        args.add(argTemp);
     }
+    
+    String temp = newTemp();
+    if (args.isEmpty()) {
+        warnningCollector.add("Warning: Function call to " + functionName + " with no arguments");
+        threeAddressCode.add(temp + " := CALL " + functionName + "()");
+    } else {
+        threeAddressCode.add(temp + " := CALL " + functionName + "(" + String.join(", ", args) + ")");
+    }
+    return temp;
+}
 
     // Convert comparison expression
     private String convertComparisonExpression(CommonTree exprNode) {

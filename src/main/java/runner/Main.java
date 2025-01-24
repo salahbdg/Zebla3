@@ -20,6 +20,7 @@ import AST.ASTParser;
 import C3A.C3aConverter;
 
 import SEMANTIC.SemanticChecker;
+import translate.PythonTranslator;
 
 //import translate.PythonTranslator;
 
@@ -73,9 +74,9 @@ public class Main {
         // Check for semantic error by traversing the AST
         SemanticChecker checker = new SemanticChecker();
         if (checker.check(ast)){
-            System.out.println("\n###Semantic check passed###\n");
+            System.out.println("\n\033[1;32m\033[1m### Semantic check passed ###\033[0m\n");
         } else {
-            System.out.println("\n###Semantic check failed###\n");
+            System.out.println("\n\033[1;31m### Semantic check failed ###\033[0m\n");
             checker.printErrors();
             System.exit(1);
         }
@@ -85,10 +86,10 @@ public class Main {
         C3aConverter converter = new C3aConverter();
         List<String> threeAddressCode = converter.convert(ast);
 
-        System.out.println("\n### Warnings found during 3AC generation ###\n");
+        System.out.println("\n\033[1;33m### Warnings found during 3AC generation ###\033[0m\n");
         converter.getWarnnings();
 
-        System.out.println("\n### 3-Address Code ###\n");
+        System.out.println("\n\033[1;34m### 3-Address Code ###\033[0m\n");
         System.out.println(threeAddressCode.size() + " lines of code");
 
 
@@ -97,13 +98,15 @@ public class Main {
         }
 
 
-
-
         // // Generate 3-address code
-        // Generator generator = new Generator(tree, argsWithoutOptions);
-        // Instructions code3adress = generator.getInstructions();
-        // if (debug)
-        //     System.out.println("\n--- 3 Adress Code Start ---\n" + code3adress + "\n--- 3 Adress Code End ---\n");
+        System.out.println("\n\033[1;34m### Python translation ###\033[0m\n");
+        PythonTranslator python = new PythonTranslator();
+        String pythoncode = python.translate(threeAddressCode);
+
+        System.out.println(pythoncode);
+        
+
+
 
 
         // // Generate target code from 3-address code
